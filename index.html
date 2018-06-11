@@ -1,80 +1,92 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 
 <head>
-    <title>Page Title</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/reset.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/styles.css" />
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height">
+    <title>Train Schedule</title>
+    <link rel="stylesheet" href="assets/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://bootswatch.com/spacelab/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css" type="text/css">
 </head>
 
 <body>
+    <div class="container">
+        <div class="jumbotron pageTitle">
+            <h1 class="text-center">Train Scheduler</h1>
+        </div>
+    </div>
 
     <div class="container">
-        <div class="jumbotron">
-            <h1>Train Schedules</h1>
-            <h3>Find you Train and its Information</h3>
-        </div>
-
         <div class="row">
-            <div class="card ">
-                <div class="card-header">
-                    Current Train Schedule 
-                </div>
-                <div class="card-body">
-                    <table class="table" id='trainTable'>
-                        <thead>
-                            <tr>
-                                <th>Train Name</th>
-                                <th>Destination</th>
-                                <th>Frequency (min)</th>
-                                <th>Next Arrival</th>
-                                <th>Minutes Away</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
+            <div class="col-sm-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading trainSchedule">Current Train Schedule</div>
+                    <div class="panel-body">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Train Name</th>
+                                    <th>Destination</th>
+                                    <th>Frequency (min)</th>
+                                    <th>Next Arrival</th>
+                                    <th>Minutes Away</th>
+                                </tr>
+                            </thead>
+                            <tbody id="trainData">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="card card-primary">
-                <div class="card-header">
-                    <strong>Add Train</strong>
-                </div>
-                <div class="card-body">
-                    <form>
-                        <div class="form-group row">
-                            <label for="train-name">Train Name</label>
-                            <input type="name" class="form-control" id="trainInput" placeholder="Train name">
-                        </div>
-                        <div class="form-group row">
-                            <label for="train-destination">Destination</label>
-                            <input type="name" class="form-control" id="destinationInput" placeholder="Enter Destination">
-                        </div>
-                        <div class="form-group row">
-                            <label for="train-time">First Train Time (HHmm - military time)</label>
-                            <input class="form-control" id="ttimeInput" type="text">
-                        </div>
-                        <div class="form-group row">
-                            <label for="frequency-input">Frequency (min)</label>
-                            <input class="form-control" id="freqInput" type="text">
-                        </div>
-                        <button id="trainADD" type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading trainInputs">Add Train</div>
+                    <div class="panel-body">
+                        <form id="add-form">
+                            <div class="inputs">
+                                <label>Train Name: </label>
+                                <input type="text" name="tName" id="train-name">
+                            </div>
+
+                            <div class="inputs">
+                                <label>Destination: </label>
+                                <input type="text" name="dest" id="train-destination">
+                            </div>
+
+                            <div class="inputs">
+                                <label>First Train Time: (HH:mm - military time) </label>
+                                <input type="text" name="iTime" id="train-time">
+                            </div>
+
+                            <div class="inputs">
+                                <label>Frequency (min): </label>
+                                <input type="number" name="freq" id="train-freq">
+                            </div>
+
+                            <button type="submit" class="inputButton" id="add-train-data">Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
-        <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="assets/javascript/app.js"></script>
+    
+    <script src="https://momentjs.com/downloads/moment.js" type="text/javascript"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+    <script src="assets/javascript/app.js" type="text/javascript"></script>
 </body>
-
 
 </html>
