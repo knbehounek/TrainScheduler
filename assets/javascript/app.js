@@ -37,7 +37,7 @@ $("#add-train-data").on("click", function (event) {
 
     firstTrainInput = moment($("#train-time").val().trim(), "HH:mm").format("HH:mm");
 
-    // Error handler when First Train Time is outside of the 24h military time
+    // Error handler 
     if (firstTrainInput !== 'Invalid date') {
         // Grabs values from textboxes
         newTrain.name = $("#train-name").val().trim();

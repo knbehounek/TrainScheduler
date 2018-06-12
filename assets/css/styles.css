@@ -1,0 +1,13 @@
+body {
+background-color: rgb(226, 222, 222);
+}
+
+#header {
+    background-image: url("https://i.gocollette.com/img/generic/train/viarail_mgw5848canadianrobson2012_ven_6312_960x380.jpg");
+    height: 300px;
+    text-align: center;
+}
+
+#trainform {
+    border: solid white 2px;
+}
