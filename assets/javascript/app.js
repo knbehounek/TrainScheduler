@@ -32,14 +32,13 @@ var newTrain = {
 }
 var firstTrainInput = "";
 
-$("#add-train-data").on("click", function (event) {
+$("#addTrainData").on("click", function (event) {
     event.preventDefault();
 
     firstTrainInput = moment($("#train-time").val().trim(), "HH:mm").format("HH:mm");
 
     // Error handler 
     if (firstTrainInput !== 'Invalid date') {
-        // Grabs values from textboxes
         newTrain.name = $("#train-name").val().trim();
         newTrain.dest = $("#train-destination").val().trim();
         newTrain.firstTrain = firstTrainInput;
@@ -49,10 +48,8 @@ $("#add-train-data").on("click", function (event) {
         clearInput();
     }
 
-    // Code for handling the push
     database.ref().push(newTrain);
 
-    // Clears all input boxes
     clearInput();
 })
 

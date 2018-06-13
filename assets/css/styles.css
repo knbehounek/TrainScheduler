@@ -8,6 +8,25 @@ background-color: rgb(226, 222, 222);
     text-align: center;
 }
 
+.trainSchedule {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.trainInputs {
+    text-align: center;
+}
+
 #trainform {
     border: solid white 2px;
+}
+
+#addTrainData{
+    margin-left: 40%
+}
+
+input{
+    float: right;
 }
